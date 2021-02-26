@@ -38,3 +38,56 @@ t --> pseudo tty i.e. pseudo terminal associated with it.
 #docker images --help
 #docker image prune --help
 ```
+# Container images
+
+```python
+#docker pull nginx
+#docker images
+#docker history nginx
+#docker images --no-trunc
+```
+# Docker images tag 
+```python
+#docker images tag 
+#docker tag --help
+```
+# Docker commands
+```python
+
+COPY - local to /var/www/html
+EXPOSE 80 -> expose the TCP port number 80 i.e. http port number
+CMD to run
+RUN 
+```
+# Build the docker file
+```python
+
+#docker build -t mynginx
+```
+# Run the docker 
+```python
+
+#docker run -dit mynginx
+#docker history mynginx
+#docker images
+#docker rmi <image name>
+```
+# Clean docker images
+
+```python
+#docker rmi -f <name of image>
+#docker rmi --help
+
+Dangling images.
+
+#docker image prune
+
+Remove both unused and dangling images
+#docker system prune -a
+```
+# Check the docker occupied space.
+
+```python
+
+#docker system df
+```
