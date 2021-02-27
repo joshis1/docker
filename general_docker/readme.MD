@@ -8,7 +8,7 @@
 * Docker uses host kernel.
 * Docker provides an easy way to create, store and run container images.
 
-# Virtual Machines vs. Containers.
+## Virtual Machines vs. Containers.
 * Containers are used for a single process or task, while virtual machine 
  may run multiple processes or tasks.
 * Container boot times are much quicker than virtual machines.
@@ -16,7 +16,7 @@
 * Docker containers share the kernel of the host machine.
 * Docker uses cgroup and namespace feature of the kernel.
 
-# Docker basics
+## Docker basics
 * Docker uses containers to run single process or a smaller group of process
 to provide a service.
 * Container image is required to start a container and these images can be held 
@@ -25,14 +25,14 @@ in an online library, called an image registry.
 * A base image is a tiny but functional operating system.
 * Docker uses a layered filesystem so that you can add to a base image.
 
-# Docker Application 
+## Docker Application 
 * Microservices - collection of loosely coupled services.
 * Each microservice can be deployed without the need to deploy the whole application.
 * Docker containers are ideal for microservices.
 * Containers have small footprint.
 
 
-# Basic Docker Commands.
+## Basic Docker Commands.
 
 ```python
 #docker run -dit debian
@@ -44,23 +44,23 @@ d --> dettach -- in the background
 i --> interactive --> stdin and stdout.
 t --> pseudo tty i.e. pseudo terminal associated with it.
 ```
-# To show how many containers are running?
+## To show how many containers are running?
 
 ```python
 #docker ps 
 
 ```
-# Stop the docker using name
+## Stop the docker using name
 
 ```python
 #docker stop bea<tab>
 ```
-# What images have been downloaded by a docker?
+## What images have been downloaded by a docker?
 
 ```python
 #docker images
 ```
-# How to inspect the docker images?
+## How to inspect the docker images?
 
 ```python
 #docker inspect <hash>
@@ -72,7 +72,7 @@ t --> pseudo tty i.e. pseudo terminal associated with it.
 #docker images --help
 #docker image prune --help
 ```
-# Container images
+## Container images
 
 ```python
 #docker pull nginx
@@ -80,12 +80,12 @@ t --> pseudo tty i.e. pseudo terminal associated with it.
 #docker history nginx
 #docker images --no-trunc
 ```
-# Docker images tag 
+## Docker images tag 
 ```python
 #docker images tag 
 #docker tag --help
 ```
-# Docker commands
+## Docker commands
 ```python
 
 COPY - local to /var/www/html
@@ -93,12 +93,12 @@ EXPOSE 80 -> expose the TCP port number 80 i.e. http port number
 CMD to run
 RUN 
 ```
-# Build the docker file
+## Build the docker file
 ```python
 
 #docker build -t mynginx
 ```
-# Run the docker 
+## Run the docker 
 ```python
 
 #docker run -dit mynginx
@@ -106,7 +106,7 @@ RUN
 #docker images
 #docker rmi <image name>
 ```
-# Clean docker images
+## Clean docker images
 
 ```python
 #docker rmi -f <name of image>
@@ -119,14 +119,14 @@ Dangling images.
 Remove both unused and dangling images
 #docker system prune -a
 ```
-# Check the docker occupied space.
+## Check the docker occupied space.
 
 ```python
 
 #docker system df
 ```
 
-# Managing Container Images.
+## Managing Container Images.
 ```python
 #docker pull nginx
 #docker images
@@ -136,13 +136,13 @@ Remove both unused and dangling images
 #docker tag --help
 #docker tag nginx:latest nginx:myblog_stable
 ```
-# Running the docker image
+## Running the docker image
 ```python
 #docker run -dit mynginx
 #docker history mynginx
 #docker images
 ```
-# Deleteing the docker image 
+## Deleteing the docker image 
 
 ```python
 
@@ -151,12 +151,12 @@ Remove both unused and dangling images
 #docker rmi --help
 #docker system prun -a # remove both unused and dangling images.
 ```
-# How much disk space is used by docker?
+## How much disk space is used by docker?
 ``` python
 #docker system df
 
 ```
-# Docker running containers
+## Docker running containers
 
 ``` python
 
@@ -171,7 +171,7 @@ Remove both unused and dangling images
 #docker start web
 #docker stop web
 ```
-# Restart the docker by its own.
+## Restart the docker by its own.
 
 ``` python
 
@@ -185,13 +185,13 @@ Remove both unused and dangling images
 #docker ps -a
 
 ```
-# How to delete the container when exited.
+## How to delete the container when exited.
 
 ``` python
 #docker run --rm hello-world
 #docker ps -a
 ```
-# How to see the logs of the running docker container?
+## How to see the logs of the running docker container?
 
 
 ``` python
@@ -203,7 +203,7 @@ ctrl +c --> to exit from viewing the logging.
 
 #docker logs -tf <container name> 
 ```
-# Searching the docker images from terminal
+## Searching the docker images from terminal
 
 
 ``` python
@@ -216,7 +216,7 @@ ctrl +c --> to exit from viewing the logging.
 #docker system df 
 #docker rmi <sha of jenkins> <sha of apache>
 ```
-# Making containers available public
+## Making containers available public
 
 
 ``` python
@@ -230,7 +230,7 @@ ctrl +c --> to exit from viewing the logging.
 # curl http://localhost:8080
 ```
 
-# Using volume i.e. -v command
+## Using volume i.e. -v command
 
 
 ``` python
@@ -242,3 +242,60 @@ ctrl +c --> to exit from viewing the logging.
 #cd ..
 #docker run -p 8080:80 --name another_nginx -v ${PWD}/webPages:/user/h/nginxhtml:ro -d nginx
 ```
+## Entering into the container by running the container in the foreground.
+
+In order to run the container in the foreground, don't pass the option -d i.e. dettach mode. If we 
+don't run in the dettach mode then the container will run in the foreground.
+
+## exec command 
+
+``` python 
+
+#docker run -it --name apache httpd /bin/bash
+#docker ps
+```
+## Connecting to the existing running container i.e. in the dettached mode - most useful.
+
+``` python 
+
+#docker run -dit --name second_apache httpd /bin/bash
+#docker ps 
+
+#docker exec -it <container_id> /bin/bash
+# exit
+
+#docker run -dit --name execution httpd
+#docker exec -d execution touch /root/hello
+#docker exec -it execution bash
+#docker exec -it execution ls /root
+#docker exec -it execution bash 
+```
+## How to see the running processes inside the docker?
+
+``` python
+#docker top <container id/name>
+```
+## Docker logging 
+``` python
+#docker run -dit --name busylogs -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts
+Here first jenkins is the userid i.e. jenkins 
+next jenkins is the image name i.e. jenkins
+lts is the long term support.
+#docker logs busylogs
+#docker logs -t busylogs --> to see the logs with time stamp
+#docker logs -f busylogs --> to see the upcoming logs i.e just like tail -f /var/log/messages
+#docker logs -tf busylogs --> timestamp as well as log tailing.
+```
+## Checking it.
+
+Open the web-browser go to http:<IP Address>:8080/login. You will see the Jenkins login page.
+When you have seen the above docker logs, it will display the random password assigned to this 
+jenkins machine. Use the password obtained from the docker logs to login in the Jenkins machine.
+
+``` python
+#docker logs -t --since 2011-11-11 busylogs
+#grep -i docker /var/log/syslog
+#journalctl -n 25
+#journalctl --no-pager -u docker.service -n 25
+```
+
