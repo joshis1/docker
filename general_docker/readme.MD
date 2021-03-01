@@ -298,4 +298,51 @@ jenkins machine. Use the password obtained from the docker logs to login in the 
 #journalctl -n 25
 #journalctl --no-pager -u docker.service -n 25
 ```
+## Registries in Docker 
+Docker hub is the default registery. Registries store images. A repository is a collection 
+of images. Each image is stored as a tag. 
+
+## Building docker images with Dockerfiles
+
+``` python
+FROM  -- sets the base iamge.
+CMD   -- Sets the command to be executed when running the image. It can also be used to set 
+the default arguments to the ENTRYPOINT instruction.
+RUN - Executes a command to help build your image.
+EXPOSE - Opens up networking ports.
+VOLUME - Sets a disk share.
+COPY - Copies files into your image from the local disk.
+LABEL - Adds metadata to an image in a key-value pair format. 
+ENV - Sets an environment.
+ENTRYPOINT - Determines which executable runs when the container starts.
+Use CMD to pass options to the executable.
+```
+## Docker file example
+
+``` python
+FROM debian:latest
+LABEL maintainer="Shreyas Joshi"
+ENTRYPOINT ["/bin/ping"]
+CMD ["www.docker.com"]
+```
+## Build the docker image 
+
+``` python
+#docker build -t shreyasjoshi15/dockerping:latest <path to dockerfile>
+```
+## Push your docker image to docker hub
+
+``` python
+
+#docker login
+#docker push shreyasjoshi15/dockerping:latest
+#docker run shreyasjoshi15/dockerping:latest 
+#docker run shreyasjoshi15/dockerping google.com
+```
+## Override the dockerfile name using -f
+
+``` python
+#docker build -t shreyasjoshi15/dockerping -f <dockerfileName>
+```
+
 
